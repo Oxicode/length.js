@@ -27,7 +27,7 @@
 <script src="length.js"></script>
 ```
 
-**Length** is available on **unpgk CDN** in [compressed](https://unpkg.com/length.js/min/length.min.js) and [uncompressed](https://unpkg.com/length.js) version.
+**Length** is available on **unpkg CDN** in [compressed](https://unpkg.com/length.js/min/length.min.js) and [uncompressed](https://unpkg.com/length.js) version.
 
 ### Node.js
 
