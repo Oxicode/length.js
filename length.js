@@ -1,5 +1,5 @@
 /*!
- * length.js v0.0.4 (https://github.com/appalaszynski/length.js)
+ * length.js v0.0.5 (https://github.com/appalaszynski/length.js)
  * Copyright (c) 2018 appalaszynski (https://github.com/appalaszynski)
  * Licensed under MIT (https://github.com/appalaszynski/length.js/blob/master/LICENSE)
  */
@@ -12,7 +12,7 @@
 }(this, function () {
 
   // Current length.js version.
-  var version = "0.0.4";
+  var version = "0.0.5";
 
   /**
    * Currently supported units.
