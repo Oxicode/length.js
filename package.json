@@ -12,7 +12,8 @@
   ],
   "main": "length.js",
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp build",
+    "test": "jest --config=jest.config.json"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.6.1",
     "gulp-uglify": "^3.0.0",
+    "jest": "^22.4.3",
     "run-sequence": "^2.2.1"
   }
 }
