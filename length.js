@@ -98,8 +98,8 @@
   }
 
   function add(value) {
-    if (typeof value !== 'number' || !value || value <= 0) {
-      throw Error('add() argument must be number bigger than 0!')
+    if (typeof value !== 'number' || !value) {
+      throw Error('add() argument must be a number!')
     }
     this.value = this.value + value;
     return this;
