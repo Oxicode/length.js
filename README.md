@@ -4,11 +4,31 @@
     <em> JavaScript library for length units conversion</em>
   </p>
   <p>
-    <a href="https://github.com/appalaszynski/length.js/blob/master/package.json">
-      <img src="https://img.shields.io/github/package-json/v/appalaszynski/length.js.svg" />
+    <a href="https://www.npmjs.com/package/length.js">
+      <img src="https://img.shields.io/npm/v/length.js.svg" />
     </a>
+    <a href="https://github.com/appalaszynski/length.js/blob/master/LICENSE">
+      <img src="https://img.shields.io/npm/l/length.js.svg" />
+    </a>
+    <a href="https://travis-ci.org/appalaszynski/length.js">
+      <img src="https://travis-ci.org/appalaszynski/length.js.svg?branch=master" />
+    </a>
+  </p>
+  <p>
     <a href="https://github.com/appalaszynski/length.js/commits/master">
       <img src="https://img.shields.io/github/last-commit/appalaszynski/length.js.svg" />
+    </a>
+    <a href="https://www.npmjs.com/package/length.js">
+      <img src="https://img.shields.io/npm/dt/length.js.svg" />
+    </a>
+    <a href="https://github.com/appalaszynski/mac-setup/stargazers">
+      <img src="https://img.shields.io/github/stars/appalaszynski/length.js.svg" />
+    </a>
+    <a href="https://github.com/appalaszynski/length.js/network/members">
+      <img src="https://img.shields.io/github/forks/appalaszynski/length.js.svg" />
+    </a>
+    <a href="https://github.com/appalaszynski/length.js/graphs/contributors">
+      <img src="https://img.shields.io/github/contributors/appalaszynski/length.js.svg" />
     </a>
   </p>
   <br>
@@ -71,7 +91,7 @@ Creates an object which contains value, unit, and conversion methods.
   * **``mi``**: mile.
 
 #### Returns
-* _**``(Object)``**_: Returns new **Length** object.
+* _**``(Object)``**_: New **Length** object.
 
 #### Example
 ```javascript
@@ -88,7 +108,7 @@ length(12, 'cm');
 * **unit** _**``(String)``**_: Unit type. [Available unit types](#arguments).
 
 #### Returns
-* _**``(Object)``**_: **Length** object with value converted to passed unit.
+* _**``(Object)``**_: New **Length** object with value converted to passed unit.
 
 #### Example
 ```javascript
@@ -124,10 +144,7 @@ length(100, 'cm').getUnit();
 
 ---
 
-### ``.getString(digits)``
-
-#### Arguments
-* **digits** _**``(Number)``**_: The number of digits to appear after the decimal point.
+### ``.getString()``
 
 #### Returns
 * _**``(String)``**_: String containing value and unit type.
@@ -136,12 +153,8 @@ length(100, 'cm').getUnit();
 ```javascript
 length(100, 'cm').getString();
 // => 100cm
-length(100, 'cm').getString(2);
-// => 100.00cm
 length(30, 'cm').to('ft').getString();
 // => 0.984251968503937ft
-length(30, 'cm').to('ft').getString(2);
-// => 0.98ft
 ```
 
 ---
@@ -152,10 +165,30 @@ length(30, 'cm').to('ft').getString(2);
 * **value** _**``(Number)``**_: The number to increment value.
 
 #### Returns
-* _**``(Object)``**_: **Length** object with incremented value.
+* _**``(Object)``**_: New **Length** object with incremented value.
 
 #### Example
 ```javascript
 length(100, 'cm').add(2);
 // => { value: 102, unit: 'cm' }
+```
+
+---
+
+### ``.toPrecision(digits)``
+
+#### Arguments
+* **digits** _**``(Number)``**_: The number of digits to appear after the decimal point.
+
+#### Returns
+* _**``(Object)``**_: New **Length** object with fixed value.
+
+#### Example
+```javascript
+length(100, 'cm').toPrecision();
+// => { value: 100, unit: 'cm' }
+length(100, 'cm').toPrecision(2);
+// => { value: 100, unit: 'cm' }
+length(30, 'cm').to('ft').toPrecision(2);
+// => { value: 0.98, unit: 'cm' }
 ```
