@@ -13,6 +13,9 @@
     <a href="https://travis-ci.org/appalaszynski/length.js">
       <img src="https://travis-ci.org/appalaszynski/length.js.svg?branch=master" />
     </a>
+    <a href="https://coveralls.io/github/appalaszynski/length.js">
+      <img src="https://coveralls.io/repos/github/appalaszynski/length.js/badge.svg?branch=master" />
+    </a>
   </p>
   <p>
     <a href="https://github.com/appalaszynski/length.js/commits/master">
