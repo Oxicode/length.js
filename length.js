@@ -1,5 +1,5 @@
 /*!
- * length.js v0.0.6 (https://github.com/appalaszynski/length.js)
+ * length.js v0.0.7 (https://github.com/appalaszynski/length.js)
  * Copyright (c) 2018 appalaszynski (https://github.com/appalaszynski)
  * Licensed under MIT (https://github.com/appalaszynski/length.js/blob/master/LICENSE)
  */
@@ -12,24 +12,27 @@
 }(this, function () {
 
   // Current length.js version.
-  var version = "0.0.6";
+  var version = "0.0.7";
 
   /**
    * Currently supported units.
    */
-
   var standardUnitDependences = {
+    pm: 10 ** -12,
+    nm: 10 ** -7,
+    mc: 10 ** -4,
+    mm: 0.1,
     cm: 1,
     dm: 10,
-    m: 100,
-    km: 100000,
+    m: 10 ** 2,
+    km: 10 ** 5,
     in: 2.54,
     ft: 30.48,
     yd: 91.44,
     mi: 160934.4,
   }
 
-  supportedUnits = Object.keys(standardUnitDependences)
+  const supportedUnits = Object.keys(standardUnitDependences)
 
   // Length constructor
   function Length(value, unit) {
@@ -72,46 +75,18 @@
 
   // Converts value to standard unit - centimeter.
   function toStandard(value, unit) {
-    switch (unit) {
-      case 'cm':
-        return value;
-      case 'dm':
-        return value * standardUnitDependences.dm;
-      case 'm':
-        return value * standardUnitDependences.m;
-      case 'km':
-        return value * standardUnitDependences.km;
-      case 'in':
-        return value * standardUnitDependences.in;
-      case 'ft':
-        return value * standardUnitDependences.ft;
-      case 'yd':
-        return value * standardUnitDependences.yd;
-      case 'mi':
-        return value * standardUnitDependences.mi;
+    if (standardUnitDependences[unit] !== undefined) {
+      return value * standardUnitDependences[unit]
     }
+    return undefined
   }
 
   // Converts standard unit value to unit passed by user.
   function toByUnit(value, standardUnit) {
-    switch (standardUnit) {
-      case 'cm':
-        return value;
-      case 'dm':
-        return value * (1 / standardUnitDependences.dm);
-      case 'm':
-        return value * (1 / standardUnitDependences.m);
-      case 'km':
-        return value * (1 / standardUnitDependences.km)
-      case 'in':
-        return value * (1 / standardUnitDependences.in)
-      case 'ft':
-        return value * (1 / standardUnitDependences.ft)
-      case 'yd':
-        return value * (1 / standardUnitDependences.yd)
-      case 'mi':
-        return value * (1 / standardUnitDependences.mi)
+    if (standardUnitDependences[standardUnit] !== undefined) {
+      return value * (1 / standardUnitDependences[standardUnit])
     }
+    return undefined
   }
 
   function to(unit) {
