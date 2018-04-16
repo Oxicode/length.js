@@ -16,11 +16,10 @@
 
   /**
    * Currently supported units.
-   * TODO: Use constants for units instead of strings, e.g. (length(100, UNITS.CENTIMETERS)).
    */
-  var supportedUnits = ['cm', 'dm', 'm', 'km', 'in', 'ft', 'yd', 'mi'];
 
   var standardUnitDependences = {
+    cm: 1,
     dm: 10,
     m: 100,
     km: 100000,
@@ -29,6 +28,8 @@
     yd: 91.44,
     mi: 160934.4,
   }
+
+  supportedUnits = Object.keys(standardUnitDependences)
 
   // Length constructor
   function Length(value, unit) {
