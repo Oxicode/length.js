@@ -20,7 +20,7 @@
   var standardUnitDependences = {
     pm: 10 ** -12,
     nm: 10 ** -7,
-    mc: 10 ** -4,
+    um: 10 ** -4,
     mm: 0.1,
     cm: 1,
     dm: 10,

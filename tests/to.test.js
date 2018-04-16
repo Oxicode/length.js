@@ -70,7 +70,7 @@ describe('Should correctly converts units', () => {
 
   it('Should correctly convert  micrometers to centimeters', () => {
     const value = 1
-    expect(length(value, 'mc').to('cm')).toEqual({ value: 10 ** -4, unit: 'cm' })
+    expect(length(value, 'um').to('cm')).toEqual({ value: 10 ** -4, unit: 'cm' })
   })
 
   it('Should correctly convert picometers to centimeters', () => {
