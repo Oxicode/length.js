@@ -1,5 +1,5 @@
 /*!
- * length.js v0.0.7 (https://github.com/appalaszynski/length.js)
+ * length.js v0.0.6 (https://github.com/appalaszynski/length.js)
  * Copyright (c) 2018 appalaszynski (https://github.com/appalaszynski)
  * Licensed under MIT (https://github.com/appalaszynski/length.js/blob/master/LICENSE)
  */
@@ -12,7 +12,7 @@
 }(this, function () {
 
   // Current length.js version.
-  var version = "0.0.7";
+  var version = "0.0.6";
 
   /**
    * Currently supported units.
@@ -32,7 +32,7 @@
     mi: 160934.4,
   }
 
-  const supportedUnits = Object.keys(standardUnitDependences)
+  var supportedUnits = Object.keys(standardUnitDependences)
 
   // Length constructor
   function Length(value, unit) {
