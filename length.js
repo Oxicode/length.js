@@ -20,7 +20,7 @@
    */
   var supportedUnits = ['cm', 'dm', 'm', 'km', 'in', 'ft', 'yd', 'mi'];
 
-  var standatdUnitDependences = {
+  var standardUnitDependences = {
     dm: 10,
     m: 100,
     km: 100000,
@@ -75,19 +75,19 @@
       case 'cm':
         return value;
       case 'dm':
-        return value * standatdUnitDependences.dm;
+        return value * standardUnitDependences.dm;
       case 'm':
-        return value * standatdUnitDependences.m;
+        return value * standardUnitDependences.m;
       case 'km':
-        return value * standatdUnitDependences.km;
+        return value * standardUnitDependences.km;
       case 'in':
-        return value * standatdUnitDependences.in;
+        return value * standardUnitDependences.in;
       case 'ft':
-        return value * standatdUnitDependences.ft;
+        return value * standardUnitDependences.ft;
       case 'yd':
-        return value * standatdUnitDependences.yd;
+        return value * standardUnitDependences.yd;
       case 'mi':
-        return value * standatdUnitDependences.mi;
+        return value * standardUnitDependences.mi;
     }
   }
 
@@ -97,19 +97,19 @@
       case 'cm':
         return value;
       case 'dm':
-        return value * (1 / standatdUnitDependences.dm);
+        return value * (1 / standardUnitDependences.dm);
       case 'm':
-        return value * (1 / standatdUnitDependences.m);
+        return value * (1 / standardUnitDependences.m);
       case 'km':
-        return value * (1 / standatdUnitDependences.km)
+        return value * (1 / standardUnitDependences.km)
       case 'in':
-        return value * (1 / standatdUnitDependences.in)
+        return value * (1 / standardUnitDependences.in)
       case 'ft':
-        return value * (1 / standatdUnitDependences.ft)
+        return value * (1 / standardUnitDependences.ft)
       case 'yd':
-        return value * (1 / standatdUnitDependences.yd)
+        return value * (1 / standardUnitDependences.yd)
       case 'mi':
-        return value * (1 / standatdUnitDependences.mi)
+        return value * (1 / standardUnitDependences.mi)
     }
   }
 
