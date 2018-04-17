@@ -13,6 +13,7 @@ proto.add = add;
 proto.getValue = getValue;
 proto.getUnit = getUnit;
 proto.getString = getString;
+proto.toString = getString;
 proto.toPrecision = toPrecision;
 
 // Expose Length prototype if user wants to add new functions.
