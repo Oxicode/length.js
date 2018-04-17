@@ -1,22 +1,16 @@
 /*!
- * length.js v0.0.6 (https://github.com/appalaszynski/length.js)
+ * length.js v0.0.7 (https://github.com/appalaszynski/length.js)
  * Copyright (c) 2018 appalaszynski (https://github.com/appalaszynski)
  * Licensed under MIT (https://github.com/appalaszynski/length.js/blob/master/LICENSE)
  */
-; (function (global, factory) {
+;(function (global, factory) {
   if (typeof exports === 'object' && typeof module !== 'undefined') {
     module.exports = factory();
   } else {
     global.length = factory();
   }
-}(this, function () {
+}(this, (function () { 'use strict';
 
-  // Current length.js version.
-  var version = "0.0.6";
-
-  /**
-   * Currently supported units.
-   */
   var standardUnitDependences = {
     pm: Math.pow(10, -12),
     nm: Math.pow(10, -7),
@@ -30,25 +24,10 @@
     ft: 30.48,
     yd: 91.44,
     mi: 160934.4,
-  }
+  };
 
-  var supportedUnits = Object.keys(standardUnitDependences)
-
-  // Length constructor
-  function Length(value, unit) {
-    validate(value, unit);
-
-    this.value = value;
-    this.unit = unit;
-  }
-
-  /**
-   * Main length function (available by global.length) which allows to create
-   * new Length object by calling simply 'length()' instead of 'new Length()'.
-   */
-  var length = function (value, unit) {
-    return new Length(value, unit)
-  }
+  // Currently supported units.
+  var supportedUnits = Object.keys(standardUnitDependences);
 
   /**
    * Function used during new Length object creation.
@@ -72,6 +51,22 @@
       throw Error('Unsupported unit type! Supported units list:\n' + supportedUnits)
     }
   }
+
+  // Length constructor
+  function Length(value, unit) {
+    validate(value, unit);
+
+    this.value = value;
+    this.unit = unit;
+  }
+
+  /**
+   * Main length function (available by global.length) which allows to create
+   * new Length object by calling simply 'length()' instead of 'new Length()'.
+   */
+  var length = function (value, unit) {
+    return new Length(value, unit)
+  };
 
   // Converts value to standard unit - centimeter.
   function toStandard(value, unit) {
@@ -108,7 +103,7 @@
     }
 
     var newValue = this.value + value;
-    
+
     return length(newValue, this.unit);
   }
 
@@ -132,8 +127,10 @@
   // Initialize Length object prototype.
   var proto = Length.prototype = {};
 
+  // Current length.js version.
+  proto.version = '0.0.7';
+
   // Insert functions into Length object prototype.
-  proto.version = version;
   proto.to = to;
   proto.add = add;
   proto.getValue = getValue;
@@ -145,4 +142,5 @@
   length.fn = proto;
 
   return length;
-}));
+
+})));

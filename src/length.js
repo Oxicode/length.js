@@ -5,7 +5,7 @@ import { to, add, getString, getUnit, getValue, toPrecision } from './lib/functi
 var proto = Length.prototype = {};
 
 // Current length.js version.
-proto.version = '0.0.6';
+proto.version = '0.0.7';
 
 // Insert functions into Length object prototype.
 proto.to = to;

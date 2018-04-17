@@ -84,6 +84,10 @@ Creates an object which contains value, unit, and conversion methods.
 * **unit** _**``(String)``**_: Unit type.  
   
   Available unit types: 
+  * **``pm``**: picometre,
+  * **``nm``**: nanometre,
+  * **``um``**: micrometre,
+  * **``mm``**: milimeter,
   * **``cm``**: centimeter,
   * **``dm``**: decimeter,
   * **``m``**: meter,

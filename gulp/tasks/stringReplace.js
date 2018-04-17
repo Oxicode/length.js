@@ -16,9 +16,15 @@ gulp.task('stringReplacePackageLock', function () {
 
 gulp.task('stringReplaceLengthJs', function () {
   return gulp.src('./length.js')
+    .pipe(replace(/proto.version = '.*'/, 'proto.version = \'' + versionNumber + '\''))
     .pipe(replace(/length.js v.* /, 'length.js v' + versionNumber + ' '))
-    .pipe(replace(/version = ".*"/, 'version = "' + versionNumber + '"'))
     .pipe(gulp.dest('.'));
+})
+
+gulp.task('stringReplaceSrcLengthJs', function () {
+  return gulp.src('./src/length.js')
+    .pipe(replace(/proto.version = '.*'/, 'proto.version = \'' + versionNumber + '\''))
+    .pipe(gulp.dest('./src'));
 })
 
 gulp.task('stringReplaceHeaderJs', function () {
