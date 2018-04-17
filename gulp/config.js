@@ -1,5 +1,5 @@
+// Get arguments passed as '--name value'
 const arg = (argList => {
-
   let arg = {}, a, opt, thisOpt, curOpt;
   for (a = 0; a < argList.length; a++) {
 
@@ -7,24 +7,21 @@ const arg = (argList => {
     opt = thisOpt.replace(/^\-+/, '');
 
     if (opt === thisOpt) {
-
-      // argument value
+      // Argument value
       if (curOpt) arg[curOpt] = opt;
       curOpt = null;
 
     }
     else {
-
-      // argument name
+      // Argument name
       curOpt = opt;
       arg[curOpt] = true;
-
     }
-
   }
 
   return arg;
-
 })(process.argv);
 
-module.exports = arg.version;
+module.exports = {
+  versionNumber: arg.versionNumber,
+};
