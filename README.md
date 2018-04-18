@@ -95,7 +95,9 @@ Creates an object which contains value, unit, and conversion methods.
   * **``ft``**: foot,
   * **``in``**: inch,
   * **``yd``**: yard,
-  * **``mi``**: mile.
+  * **``mi``**: mile,
+  * **``au``**: astronomical unit,
+  * **``ly``**: light year.
 
 #### Returns
 * _**``(Object)``**_: New **Length** object.
@@ -103,6 +105,7 @@ Creates an object which contains value, unit, and conversion methods.
 #### Example
 ```javascript
 length(12, 'cm');
+// => { value: 12, unit: 'cm }
 ```
 
 ---
@@ -166,10 +169,11 @@ length(30, 'cm').to('ft').getString();
 
 ---
 
-### ``.add(value)``
+### ``.add(value, unit)``
 
 #### Arguments
 * **value** _**``(Number)``**_: The number to increment value.
+* **unit** _**``(String)``**_: Unit type. **Not required.**
 
 #### Returns
 * _**``(Object)``**_: New **Length** object with incremented value.
@@ -178,6 +182,8 @@ length(30, 'cm').to('ft').getString();
 ```javascript
 length(100, 'cm').add(2);
 // => { value: 102, unit: 'cm' }
+length(100, 'cm').add(2, 'dm');
+// => { value: 120, unit: 'cm' }
 ```
 
 ---
