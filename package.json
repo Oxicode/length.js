@@ -8,7 +8,9 @@
     "length",
     "conventer",
     "javascript",
-    "library"
+    "library",
+    "units",
+    "conversion"
   ],
   "main": "length.js",
   "scripts": {
