@@ -1,3 +1,4 @@
+// This object stores information about dependences between units and centimeter.
 var standardUnitDependences = {
   pm: Math.pow(10, -12),
   nm: Math.pow(10, -7),
@@ -11,9 +12,11 @@ var standardUnitDependences = {
   ft: 30.48,
   yd: 91.44,
   mi: 160934.4,
-}
+  au: 14959787069100,
+  ly: 946073047258080000,
+};
 
-// Currently supported units.
-var supportedUnits = Object.keys(standardUnitDependences)
+// Array of currently supported units.
+var supportedUnits = Object.keys(standardUnitDependences);
 
 export { standardUnitDependences, supportedUnits };

@@ -1,19 +1,20 @@
 import { standardUnitDependences } from './units';
 
-// Converts value to standard unit - centimeter.
-function toStandard(value, unit) {
+// Function converts value in passed unit to value in standard unit - centimeter.
+function getValueInStandardUnit(value, unit) {
   if (standardUnitDependences[unit] !== undefined) {
     return value * standardUnitDependences[unit]
   }
-  return undefined
-}
+  return undefined;
+};
 
-// Converts standard unit value to unit passed by user.
-function toByUnit(value, standardUnit) {
-  if (standardUnitDependences[standardUnit] !== undefined) {
-    return value * (1 / standardUnitDependences[standardUnit])
+
+// Function converts value in standard unit to value in passed unit.
+function getValueByUnit(value, unit) {
+  if (standardUnitDependences[unit] !== undefined) {
+    return value * (1 / standardUnitDependences[unit])
   }
-  return undefined
-}
+  return undefined;
+};
 
-export { toByUnit, toStandard };
+export { getValueInStandardUnit, getValueByUnit };

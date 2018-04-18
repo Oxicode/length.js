@@ -24,11 +24,7 @@ describe('length()', () => {
   it('Should throw an error if value argument is not a number', () =>{
     expect(function () { length('string', 'cm') }).toThrowError();
   })
-
-  it('Should throw an error if value argument is 0', () =>{
-    expect(function () { length(0, 'cm') }).toThrowError();
-  })
-
+  
   it('Should throw an error if passed unit type is not supported', () =>{
     expect(function () { length(12, 'unit') }).toThrowError();
   })

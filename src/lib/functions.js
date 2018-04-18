@@ -1,45 +1,59 @@
 import { length } from './length';
-import { validateUnit } from './validate';
-import { toStandard, toByUnit } from './standard';
+import { validate, validateUnit, validateValue } from './validate';
+import { getValueInStandardUnit, getValueByUnit } from './standard';
 
 function to(unit) {
-  // Check unit correctness.
+  // Check new unit correctness.
   validateUnit(unit);
 
-  // Get value in standard unit.
-  var standardUnitValue = toStandard(this.value, this.unit);
+  // Get value in current unit converted to value in standard unit.
+  var valueInStandardUnit = getValueInStandardUnit(this.value, this.unit);
 
-  // Get value converted to unit passed by user.
-  var convertedValue = toByUnit(standardUnitValue, unit);
+  // Get value in standard unit converted to value in unit passed by user.
+  var convertedValue = getValueByUnit(valueInStandardUnit, unit);
 
   return length(convertedValue, unit);
-}
+};
 
-function add(value) {
-  if (typeof value !== 'number') {
-    throw Error('add() argument must be a number!')
+
+function add(value, unit) {
+  var newValue;
+
+  if(typeof unit === 'undefined') {
+    validateValue(value);
+
+    newValue = this.value + value;
+  } else {
+    validate(value, unit);
+
+    // If passed value is equal to 0, just return the same Length object.
+    if (value === 0) return length(this.value, this.unit);
+
+    newValue = this.value + length(value, unit).to(this.unit).getValue();
   }
 
-  var newValue = this.value + value;
-
   return length(newValue, this.unit);
-}
+};
+
 
 function getValue() {
   return this.value;
-}
+};
+
 
 function getUnit() {
   return this.unit;
-}
+};
+
 
 function getString() {
   return this.value + this.unit;
-}
+};
+
 
 function toPrecision(digits) {
   var value = digits ? this.value.toFixed(digits) : this.value;
   return length(parseFloat(value), this.unit);
-}
+};
 
 export { to, add, getString, getUnit, getValue, toPrecision  }

@@ -11,6 +11,7 @@
   }
 }(this, (function () { 'use strict';
 
+  // This object stores information about dependences between units and centimeter.
   var standardUnitDependences = {
     pm: Math.pow(10, -12),
     nm: Math.pow(10, -7),
@@ -24,35 +25,43 @@
     ft: 30.48,
     yd: 91.44,
     mi: 160934.4,
+    au: 14959787069100,
+    ly: 946073047258080000,
   };
 
-  // Currently supported units.
+  // Array of currently supported units.
   var supportedUnits = Object.keys(standardUnitDependences);
 
-  /**
-   * Function used during new Length object creation.
-   * It checks if parameters passed by user are valid.
-   */
+  // Function checks if value and unit are valid.
   function validate(value, unit) {
-    if (!value || !unit) {
-      throw Error('You have to pass value and unit type!')
+    if (typeof value === 'undefined' || typeof unit === 'undefined') {
+      throw Error('You have to pass value and unit type!');
     } else if (typeof value !== 'number') {
-      throw Error('Value must be a number!')
+      throw Error('Value must be a number!');
     } else if (supportedUnits.indexOf(unit) == -1) {
-      throw Error('Unsupported unit type! Supported units list:\n' + supportedUnits)
+      throw Error('Unsupported unit type! Supported types:\n' + supportedUnits + '.');
     }
   }
 
-  // Simpler version of validate() function - checks only unit type correctness.
+  // Simpler version of validate() function - checks only unit correctness.
   function validateUnit(unit) {
-    if (!unit) {
-      throw Error('You have to pass unit type!')
+    if (typeof unit === 'undefined') {
+      throw Error('You have to pass unit type!');
     } else if (supportedUnits.indexOf(unit) == -1) {
-      throw Error('Unsupported unit type! Supported units list:\n' + supportedUnits)
+      throw Error('Unsupported unit type! Supported types:\n' + supportedUnits + '.');
     }
   }
 
-  // Length constructor
+  // Simpler version of validate() function - checks only value correctness.
+  function validateValue(value) {
+    if (typeof value === 'undefined') {
+      throw Error('You have to pass value!');
+    } else if (typeof value !== 'number') {
+      throw Error('Value must be a number!');
+    }
+  }
+
+  // Length object constructor.
   function Length(value, unit) {
     validate(value, unit);
 
@@ -61,48 +70,57 @@
   }
 
   /**
-   * Main length function (available by global.length) which allows to create
-   * new Length object by calling simply 'length()' instead of 'new Length()'.
+   * Main function (available by global.length) which allows to
+   * create new Length object by 'length()' instead of 'new Length()'.
    */
   var length = function (value, unit) {
-    return new Length(value, unit)
+    return new Length(value, unit);
   };
 
-  // Converts value to standard unit - centimeter.
-  function toStandard(value, unit) {
+  // Function converts value in passed unit to value in standard unit - centimeter.
+  function getValueInStandardUnit(value, unit) {
     if (standardUnitDependences[unit] !== undefined) {
       return value * standardUnitDependences[unit]
     }
-    return undefined
+    return undefined;
   }
 
-  // Converts standard unit value to unit passed by user.
-  function toByUnit(value, standardUnit) {
-    if (standardUnitDependences[standardUnit] !== undefined) {
-      return value * (1 / standardUnitDependences[standardUnit])
+  // Function converts value in standard unit to value in passed unit.
+  function getValueByUnit(value, unit) {
+    if (standardUnitDependences[unit] !== undefined) {
+      return value * (1 / standardUnitDependences[unit])
     }
-    return undefined
+    return undefined;
   }
 
   function to(unit) {
-    // Check unit correctness.
+    // Check new unit correctness.
     validateUnit(unit);
 
-    // Get value in standard unit.
-    var standardUnitValue = toStandard(this.value, this.unit);
+    // Get value in current unit converted to value in standard unit.
+    var valueInStandardUnit = getValueInStandardUnit(this.value, this.unit);
 
-    // Get value converted to unit passed by user.
-    var convertedValue = toByUnit(standardUnitValue, unit);
+    // Get value in standard unit converted to value in unit passed by user.
+    var convertedValue = getValueByUnit(valueInStandardUnit, unit);
 
     return length(convertedValue, unit);
   }
 
-  function add(value) {
-    if (typeof value !== 'number') {
-      throw Error('add() argument must be a number!')
-    }
+  function add(value, unit) {
+    var newValue;
 
-    var newValue = this.value + value;
+    if(typeof unit === 'undefined') {
+      validateValue(value);
+
+      newValue = this.value + value;
+    } else {
+      validate(value, unit);
+
+      // If passed value is equal to 0, just return the same Length object.
+      if (value === 0) return length(this.value, this.unit);
+
+      newValue = this.value + length(value, unit).to(this.unit).getValue();
+    }
 
     return length(newValue, this.unit);
   }
@@ -127,10 +145,10 @@
   // Initialize Length object prototype.
   var proto = Length.prototype = {};
 
-  // Current length.js version.
+  // Add current version number to Length object prototype.
   proto.version = '0.0.7';
 
-  // Insert functions into Length object prototype.
+  // Add functions to Length object prototype.
   proto.to = to;
   proto.add = add;
   proto.getValue = getValue;
@@ -138,7 +156,7 @@
   proto.getString = getString;
   proto.toPrecision = toPrecision;
 
-  // Expose Length prototype if user wants to add new functions.
+  // Expose Length object prototype if user wants to add new functions.
   length.fn = proto;
 
   return length;

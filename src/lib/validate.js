@@ -1,26 +1,34 @@
 import { supportedUnits } from './units';
 
-/**
- * Function used during new Length object creation.
- * It checks if parameters passed by user are valid.
- */
+// Function checks if value and unit are valid.
 function validate(value, unit) {
-  if (!value || !unit) {
-    throw Error('You have to pass value and unit type!')
+  if (typeof value === 'undefined' || typeof unit === 'undefined') {
+    throw Error('You have to pass value and unit type!');
   } else if (typeof value !== 'number') {
-    throw Error('Value must be a number!')
+    throw Error('Value must be a number!');
   } else if (supportedUnits.indexOf(unit) == -1) {
-    throw Error('Unsupported unit type! Supported units list:\n' + supportedUnits)
+    throw Error('Unsupported unit type! Supported types:\n' + supportedUnits + '.');
   }
-}
+};
 
-// Simpler version of validate() function - checks only unit type correctness.
+
+// Simpler version of validate() function - checks only unit correctness.
 function validateUnit(unit) {
-  if (!unit) {
-    throw Error('You have to pass unit type!')
+  if (typeof unit === 'undefined') {
+    throw Error('You have to pass unit type!');
   } else if (supportedUnits.indexOf(unit) == -1) {
-    throw Error('Unsupported unit type! Supported units list:\n' + supportedUnits)
+    throw Error('Unsupported unit type! Supported types:\n' + supportedUnits + '.');
   }
-}
+};
 
-export { validate, validateUnit };
+
+// Simpler version of validate() function - checks only value correctness.
+function validateValue(value) {
+  if (typeof value === 'undefined') {
+    throw Error('You have to pass value!');
+  } else if (typeof value !== 'number') {
+    throw Error('Value must be a number!');
+  }
+};
+
+export { validate, validateUnit, validateValue };
