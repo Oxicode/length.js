@@ -1,6 +1,6 @@
 var length = require('../length');
 
-describe('Should add value', () => {
+describe('add()', () => {
   it('Should correctly add positive value', () => {
     expect(length(10, 'cm').add(20)).toEqual({ value: 30, unit: 'cm' });
     expect(length(10, 'cm').add(0.0001)).toEqual({ value: 10.0001, unit: 'cm' });
@@ -28,5 +28,11 @@ describe('Should add value', () => {
 
   it('Should correctly add zero', () => {
     expect(length(10, 'cm').add(0)).toEqual({ value: 10, unit: 'cm' });
+  })
+
+  it('Should correctly value in other unit', () => {
+    expect(length(10, 'cm').add(1, 'm')).toEqual({ value: 110, unit: 'cm' });
+    expect(length(9, 'dm').add(2, 'in')).toEqual({ value: 9.508, unit: 'dm' });
+    expect(length(10, 'cm').add(0, 'yd')).toEqual({ value: 10, unit: 'cm' });
   })
 })
