@@ -68,9 +68,9 @@ import length from 'length.js';
 
 ## Usage
 
-**Length** creates an object which contains **value**, **unit**, and **conversion** methods.  
-To get this object, simply call [**``length()``**](#lengthvalue-unit) with two supported arguments. Then you can convert passed value by calling one of available [method](#methods).  
-  
+**Length** creates an object which contains **value**, **unit**, and **conversion** methods.
+To get this object, simply call [**``length()``**](#lengthvalue-unit) with two supported arguments. Then you can convert passed value by calling one of available [method](#methods).
+
 The **Length** prototype is exposed through **``length.fn``** (if you want to add your own functions).
 
 <hr />
@@ -81,9 +81,9 @@ Creates an object which contains value, unit, and conversion methods.
 
 #### Arguments
 * **value** _**``(Number)``**_: Number of units.
-* **unit** _**``(String)``**_: Unit type.  
-  
-  Available unit types: 
+* **unit** _**``(String)``**_: Unit type.
+
+  Available unit types:
   * **``pm``**: picometre,
   * **``nm``**: nanometre,
   * **``um``**: micrometre,
@@ -125,7 +125,7 @@ length(12, 'cm');
 length(100, 'cm').to('m');
 // => { value: 1, unit: 'm' }
 ```
- 
+
 ---
 
 ### ``.getValue()``
